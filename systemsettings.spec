@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : systemsettings
-Version  : 5.25.5
-Release  : 71
-URL      : https://download.kde.org/stable/plasma/5.25.5/systemsettings-5.25.5.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.25.5/systemsettings-5.25.5.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.25.5/systemsettings-5.25.5.tar.xz.sig
+Version  : 5.26.0
+Release  : 72
+URL      : https://download.kde.org/stable/plasma/5.26.0/systemsettings-5.26.0.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.0/systemsettings-5.26.0.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.0/systemsettings-5.26.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1
@@ -25,7 +25,6 @@ BuildRequires : kactivities-dev
 BuildRequires : kactivities-stats-dev
 BuildRequires : kcmutils-dev
 BuildRequires : kdoctools-dev
-BuildRequires : ki18n-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kjs-dev
 BuildRequires : krunner-dev
@@ -87,15 +86,15 @@ locales components for the systemsettings package.
 
 
 %prep
-%setup -q -n systemsettings-5.25.5
-cd %{_builddir}/systemsettings-5.25.5
+%setup -q -n systemsettings-5.26.0
+cd %{_builddir}/systemsettings-5.26.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1662509564
+export SOURCE_DATE_EPOCH=1665770558
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -111,7 +110,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1662509564
+export SOURCE_DATE_EPOCH=1665770558
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
@@ -153,31 +152,23 @@ popd
 /usr/share/kpackage/genericqml/org.kde.systemsettings.sidebar/contents/ui/main.qml
 /usr/share/kpackage/genericqml/org.kde.systemsettings.sidebar/metadata.desktop
 /usr/share/kservicetypes5/infocenterexternalapp.desktop
-/usr/share/kservicetypes5/systemsettingscategory.desktop
 /usr/share/kservicetypes5/systemsettingsexternalapp.desktop
-/usr/share/kservicetypes5/systemsettingsview.desktop
 /usr/share/kxmlgui5/systemsettings/systemsettingsui.rc
 /usr/share/metainfo/org.kde.systemsettings.metainfo.xml
 /usr/share/qlogging-categories5/systemsettings.categories
 /usr/share/systemsettings/categories/settings-appearance-color.desktop
 /usr/share/systemsettings/categories/settings-appearance-font.desktop
-/usr/share/systemsettings/categories/settings-appearance-icons.desktop
 /usr/share/systemsettings/categories/settings-appearance.desktop
 /usr/share/systemsettings/categories/settings-hardware-display.desktop
 /usr/share/systemsettings/categories/settings-hardware-input.desktop
 /usr/share/systemsettings/categories/settings-hardware-multimedia.desktop
-/usr/share/systemsettings/categories/settings-hardware-peripherals.desktop
 /usr/share/systemsettings/categories/settings-hardware-powermanagement.desktop
 /usr/share/systemsettings/categories/settings-hardware-removable-storage.desktop
 /usr/share/systemsettings/categories/settings-hardware.desktop
-/usr/share/systemsettings/categories/settings-network-bluetooth.desktop
 /usr/share/systemsettings/categories/settings-network-connectivity.desktop
 /usr/share/systemsettings/categories/settings-network-networksettings.desktop
 /usr/share/systemsettings/categories/settings-network.desktop
-/usr/share/systemsettings/categories/settings-personalization-accessibility.desktop
-/usr/share/systemsettings/categories/settings-personalization-accountdetails.desktop
 /usr/share/systemsettings/categories/settings-personalization-applications.desktop
-/usr/share/systemsettings/categories/settings-personalization-notification.desktop
 /usr/share/systemsettings/categories/settings-personalization-regionalsettings.desktop
 /usr/share/systemsettings/categories/settings-personalization.desktop
 /usr/share/systemsettings/categories/settings-root-category.desktop
