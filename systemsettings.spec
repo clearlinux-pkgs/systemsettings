@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : systemsettings
-Version  : 5.26.3
-Release  : 75
-URL      : https://download.kde.org/stable/plasma/5.26.3/systemsettings-5.26.3.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.26.3/systemsettings-5.26.3.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.26.3/systemsettings-5.26.3.tar.xz.sig
+Version  : 5.26.4
+Release  : 76
+URL      : https://download.kde.org/stable/plasma/5.26.4/systemsettings-5.26.4.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.26.4/systemsettings-5.26.4.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.26.4/systemsettings-5.26.4.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1
@@ -24,7 +24,6 @@ BuildRequires : extra-cmake-modules-data
 BuildRequires : kactivities-dev
 BuildRequires : kactivities-stats-dev
 BuildRequires : kcmutils-dev
-BuildRequires : kdoctools-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kjs-dev
 BuildRequires : krunner-dev
@@ -86,15 +85,15 @@ locales components for the systemsettings package.
 
 
 %prep
-%setup -q -n systemsettings-5.26.3
-cd %{_builddir}/systemsettings-5.26.3
+%setup -q -n systemsettings-5.26.4
+cd %{_builddir}/systemsettings-5.26.4
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1667935037
+export SOURCE_DATE_EPOCH=1669825233
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -110,7 +109,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1667935037
+export SOURCE_DATE_EPOCH=1669825233
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
