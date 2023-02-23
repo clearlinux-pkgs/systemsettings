@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : systemsettings
-Version  : 5.27.0
-Release  : 78
-URL      : https://download.kde.org/stable/plasma/5.27.0/systemsettings-5.27.0.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.0/systemsettings-5.27.0.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.0/systemsettings-5.27.0.tar.xz.sig
+Version  : 5.27.1
+Release  : 79
+URL      : https://download.kde.org/stable/plasma/5.27.1/systemsettings-5.27.1.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.1/systemsettings-5.27.1.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.1/systemsettings-5.27.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1
@@ -28,7 +28,6 @@ BuildRequires : kio-dev
 BuildRequires : kirigami2-dev
 BuildRequires : kjs-dev
 BuildRequires : krunner-dev
-BuildRequires : kwindowsystem-dev
 BuildRequires : plasma-framework-dev
 BuildRequires : plasma-workspace-dev
 # Suppress stripping binaries
@@ -91,15 +90,15 @@ locales components for the systemsettings package.
 
 
 %prep
-%setup -q -n systemsettings-5.27.0
-cd %{_builddir}/systemsettings-5.27.0
+%setup -q -n systemsettings-5.27.1
+cd %{_builddir}/systemsettings-5.27.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1676872791
+export SOURCE_DATE_EPOCH=1677193319
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -115,7 +114,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1676872791
+export SOURCE_DATE_EPOCH=1677193319
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
