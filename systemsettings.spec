@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : systemsettings
-Version  : 5.27.4.1
-Release  : 82
-URL      : https://download.kde.org/stable/plasma/5.27.4/systemsettings-5.27.4.1.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.4/systemsettings-5.27.4.1.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.4/systemsettings-5.27.4.1.tar.xz.sig
+Version  : 5.27.5
+Release  : 83
+URL      : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1
@@ -91,31 +91,48 @@ locales components for the systemsettings package.
 
 
 %prep
-%setup -q -n systemsettings-5.27.4.1
-cd %{_builddir}/systemsettings-5.27.4.1
+%setup -q -n systemsettings-5.27.5
+cd %{_builddir}/systemsettings-5.27.5
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680723238
+export SOURCE_DATE_EPOCH=1684886756
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+%cmake ..
+make  %{?_smp_mflags}
+popd
+mkdir -p clr-build-avx2
+pushd clr-build-avx2
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FCFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export FFLAGS="$FFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -O3 -Wl,-z,x86-64-v3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd -march=x86-64-v3 "
+export CFLAGS="$CFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -march=x86-64-v3 -m64 -Wl,-z,x86-64-v3"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1680723238
+export SOURCE_DATE_EPOCH=1684886756
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
@@ -128,16 +145,22 @@ cp %{_builddir}/systemsettings-%{version}/LICENSES/LGPL-2.1-or-later.txt %{build
 cp %{_builddir}/systemsettings-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/systemsettings/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/systemsettings-%{version}/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/systemsettings/7d9831e05094ce723947d729c2a46a09d6e90275 || :
 cp %{_builddir}/systemsettings-%{version}/runner/systemsettingsrunner.json.license %{buildroot}/usr/share/package-licenses/systemsettings/fd32940f125ecf08f9ad3cb0b64251688e927a90 || :
+pushd clr-build-avx2
+%make_install_v3  || :
+popd
 pushd clr-build
 %make_install
 popd
 %find_lang systemsettings
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/systemsettings
+/V3/usr/bin/systemsettings5
 /usr/bin/systemsettings
 /usr/bin/systemsettings5
 
@@ -210,11 +233,17 @@ popd
 /usr/share/doc/HTML/ru/systemsettings/index.docbook
 /usr/share/doc/HTML/sv/systemsettings/index.cache.bz2
 /usr/share/doc/HTML/sv/systemsettings/index.docbook
+/usr/share/doc/HTML/tr/systemsettings/index.cache.bz2
+/usr/share/doc/HTML/tr/systemsettings/index.docbook
 /usr/share/doc/HTML/uk/systemsettings/index.cache.bz2
 /usr/share/doc/HTML/uk/systemsettings/index.docbook
 
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/libsystemsettingsview.so.3
+/V3/usr/lib64/qt5/plugins/kf5/krunner/krunner_systemsettings.so
+/V3/usr/lib64/qt5/plugins/systemsettingsview/icon_mode.so
+/V3/usr/lib64/qt5/plugins/systemsettingsview/systemsettings_sidebar_mode.so
 /usr/lib64/libsystemsettingsview.so.3
 /usr/lib64/qt5/plugins/kf5/krunner/krunner_systemsettings.so
 /usr/lib64/qt5/plugins/systemsettingsview/icon_mode.so
