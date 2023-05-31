@@ -7,7 +7,7 @@
 #
 Name     : systemsettings
 Version  : 5.27.5
-Release  : 83
+Release  : 84
 URL      : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz
 Source0  : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz
 Source1  : https://download.kde.org/stable/plasma/5.27.5/systemsettings-5.27.5.tar.xz.sig
@@ -99,7 +99,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684886756
+export SOURCE_DATE_EPOCH=1685501109
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -132,7 +132,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684886756
+export SOURCE_DATE_EPOCH=1685501109
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
@@ -160,7 +160,6 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /V3/usr/bin/systemsettings
-/V3/usr/bin/systemsettings5
 /usr/bin/systemsettings
 /usr/bin/systemsettings5
 
