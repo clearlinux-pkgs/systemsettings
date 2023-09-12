@@ -6,11 +6,11 @@
 # Source0 file verified with key 0xD7574483BB57B18D (jr@jriddell.org)
 #
 Name     : systemsettings
-Version  : 5.27.7
-Release  : 86
-URL      : https://download.kde.org/stable/plasma/5.27.7/systemsettings-5.27.7.tar.xz
-Source0  : https://download.kde.org/stable/plasma/5.27.7/systemsettings-5.27.7.tar.xz
-Source1  : https://download.kde.org/stable/plasma/5.27.7/systemsettings-5.27.7.tar.xz.sig
+Version  : 5.27.8
+Release  : 87
+URL      : https://download.kde.org/stable/plasma/5.27.8/systemsettings-5.27.8.tar.xz
+Source0  : https://download.kde.org/stable/plasma/5.27.8/systemsettings-5.27.8.tar.xz
+Source1  : https://download.kde.org/stable/plasma/5.27.8/systemsettings-5.27.8.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause CC0-1.0 GPL-2.0 GPL-3.0 LGPL-2.0 LGPL-2.1
@@ -91,15 +91,15 @@ locales components for the systemsettings package.
 
 
 %prep
-%setup -q -n systemsettings-5.27.7
-cd %{_builddir}/systemsettings-5.27.7
+%setup -q -n systemsettings-5.27.8
+cd %{_builddir}/systemsettings-5.27.8
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690903855
+export SOURCE_DATE_EPOCH=1694548943
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -132,7 +132,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1690903855
+export SOURCE_DATE_EPOCH=1694548943
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/systemsettings
 cp %{_builddir}/systemsettings-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/systemsettings/ea97eb88ae53ec41e26f8542176ab986d7bc943a || :
